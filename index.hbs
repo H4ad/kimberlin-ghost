@@ -40,13 +40,13 @@ into the {body} of the default.hbs template --}}
             <div class="right-feed-container author-container">
                 <div class="author-container-background">
                     {{#if cover_image }}
-                    <img src="{{ cover_image }}" alt="Uma imagem de fundo do autor.">
+                    <img src="{{ cover_image }}" alt="{{{t 'A background image of the author' }}}.">
                     {{else}}
-                    <img src="/assets/author-background.jpg" alt="Uma imagem de fundo do autor.">
+                    <img src="/assets/author-background.jpg" alt="{{{t 'A background image of the author' }}}.">
                     {{/if}}
                 </div>
                 <div class="author-container-profile-image">
-                    <img src="{{ profile_image }}" alt="A imagem do author">
+                    <img src="{{ profile_image }}" alt="{{{t 'The profile image of the author' }}}">
                 </div>
                 <div class="author-container-profile-image-link">
                     <a href="{{ url }}">{{ name }}</a>
@@ -86,7 +86,7 @@ into the {body} of the default.hbs template --}}
             {{/get}}
 
             <div class="right-feed-container categories-container">
-                <h4 class="right-feed-title">CATEGORIAS</h4>
+                <h4 class="right-feed-title">{{{t 'CATEGORIES' }}}</h4>
 
                 <ul class="categories-list-container">
                     {{#get "tags" order="name asc"}}
