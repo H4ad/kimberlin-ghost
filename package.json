@@ -8,8 +8,8 @@
     },
     "license": "MIT",
     "screenshots": {
-        "desktop": "assets/screenshot-desktop.jpg",
-        "mobile": "assets/screenshot-mobile.jpg"
+        "desktop": "assets/screenshot-desktop.png",
+        "mobile": "assets/screenshot-mobile.png"
     },
     "scripts": {
         "dev": "gulp",
@@ -36,11 +36,15 @@
     "keywords": [
         "ghost",
         "theme",
-        "ghost-theme"
+        "ghost-theme",
+        "kimberlin"
     ],
     "repository": {
-        "type": "git"
+        "type": "git",
+        "url": "https://github.com/H4ad/kimberlin-ghost.git"
     },
+    "bugs": "https://github.com/H4ad/kimberlin-ghost/issues",
+    "contributors": "https://github.com/H4ad/kimberlin-ghost/graphs/contributors",
     "devDependencies": {
         "@tryghost/release-utils": "0.5.0",
         "autoprefixer": "9.7.6",

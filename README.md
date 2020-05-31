@@ -1,10 +1,10 @@
-# Casper
+# Kimberlin
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
+A simple theme inspired by [Casper](https://github.com/TryGhost/Casper) and [Journey](https://demo.indieground.net/journey/demo2/), created for my friend Kimberlin.
 
 &nbsp;
 
-![screenshot-desktop](https://user-images.githubusercontent.com/353959/66987533-40eae100-f0c1-11e9-822e-cbaf38fb8e3f.png)
+![screenshot-desktop](./assets/screenshot-desktop.png)
 
 &nbsp;
 
