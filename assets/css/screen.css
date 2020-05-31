@@ -2324,6 +2324,11 @@ Usage (In Ghost editor):
     width: 100%;
 }
 
+.kg-card {
+    background-color: var(--kim-post-full-kg-card-background-color);
+    border-radius: 4px;
+}
+
 .kg-code-card pre {
     margin: 0;
 }
@@ -2362,7 +2367,7 @@ Usage (In Ghost editor):
 }
 
 .kg-bookmark-title {
-    color: color(var(--midgrey) l(-30%));
+    color: var(--kim-post-full-text-color);
     font-size: 1.6rem;
     line-height: 1.5em;
     font-weight: 600;
@@ -2370,7 +2375,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content .kg-bookmark-container:hover .kg-bookmark-title {
-    color: var(--blue);
+    color: var(--kim-post-full-text-color);
 }
 
 .kg-bookmark-description {
@@ -2378,7 +2383,7 @@ Usage (In Ghost editor):
     overflow-y: hidden;
     margin-top: 12px;
     max-height: 48px;
-    color: color(var(--midgrey) l(-10%));
+    color: color(var(--kim-post-full-text-color) l(-10%));
     font-size: 1.5rem;
     line-height: 1.5em;
     font-weight: 400;
@@ -2409,7 +2414,7 @@ Usage (In Ghost editor):
     flex-wrap: wrap;
     align-items: center;
     margin-top: 14px;
-    color: color(var(--midgrey) l(-10%));
+    color: color(var(--kim-post-full-text-color) l(-10%));
     font-size: 1.5rem;
     font-weight: 400;
 }
