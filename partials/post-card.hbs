@@ -1,4 +1,4 @@
-<article class="post-card {{post_class}} {{#unless feature_image}}no-image{{else}}{{#is "home"}}{{#has index="nth:6"}}post-card-large{{/has}}{{/is}}{{/unless}}">
+<article class="post-card {{post_class}} {{#unless feature_image}}no-image{{else}}{{/unless}}">
 
     {{#if feature_image}}
     <a class="post-card-image-link" href="{{url}}">
@@ -24,7 +24,9 @@
             <header class="post-card-header">
                 {{#if primary_tag}}
                     {{#primary_tag}}
-                    <div class="post-card-primary-tag">{{name}}</div>
+                    <div class="post-card-primary-tag-container">
+                        <div class="post-card-primary-tag">{{name}}</div>
+                    </div>
                     {{/primary_tag}}
                 {{/if}}
                 <h2 class="post-card-title">{{title}}</h2>

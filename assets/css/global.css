@@ -16,8 +16,61 @@
     --brown: #a3821a;
     --darkmode: color(var(--darkgrey) l(+2%));
 
+    /* Global */
+    --kim-body-background-color: #1b1718;
+    --kim-footer-background-color: #30292b;
+    --kim-footer-color: #fbe2cb;
+    --kim-a-color: #fbe2cb;
+    --kim-error-code-color: #fbe2cb;
+    --kim-error-description-color: #cebba3;
+
+    /* Navbar */
     --kim-nav-background-color: #30292b;
     --kim-nav-li-color: #fbe2cb;
+
+    /* Tags */
+    --kim-tags-header-background-color: #1b1718;
+    --kim-tags-header-title-color: #fbe2cb;
+    --kim-tags-header-tag-description-color: #fbe2cb;
+
+    /* Post */
+    --kim-post-background-color: #30292b; 
+    --kim-post-category-border: #d1a162;
+    --kim-post-category-color: #fbe2cb;
+    --kim-post-title-color: #fbe2cb;
+    --kim-post-excerpt-color: #cebba3;
+    --kim-post-author-name-color: #fbe2cb;
+    --kim-post-author-date-color: #cebba3;
+    --kim-post-author-social-media-icon-color: #d1a162;
+
+    /* Right Feed */
+
+    /* Authors */
+    --kim-right-feed-author-name-color: #fbe2cb;
+    --kim-right-feed-author-name-hover-color: #cebba3;
+    --kim-right-feed-author-location-color: #d1a162;
+    --kim-right-feed-author-bio-color: #cebba3;
+
+    /* Categories */
+    --kim-categories-background-color: #30292b;
+    --kim-categories-title-color: #fbe2cb;
+    --kim-categories-link-color: #fbe2cb;
+    --kim-categories-link-hover-color: #d1a162;
+    --kim-categories-li-border-bottom-color: #4a423a;
+    --kim-categories-title-detail-color: #d1a162;
+
+    /* Post Full */
+    --kim-post-full-title-color: #fbe2cb;
+    --kim-post-full-excerpt-color: #fbe2cb;
+    --kim-post-full-byline-color: #fbe2cb;
+    --kim-post-full-text-color: #fff;
+    --kim-post-full-a-color: #d1a162;
+    --kim-post-full-a-hover-color: #cebba3;
+    --kim-post-full-code-background-color: #4a423a;
+    --kim-post-full-strong-color: #fbe2cb;
+    --kim-post-full-blockquote-left-color: #d1a162;
+    --kim-post-full-read-next-background-color: #1b1718;
+    --kim-post-full-read-next-card-color: #fbe2cb;
 }
 
 /* Reset
@@ -284,7 +337,6 @@ html {
 }
 body {
     overflow-x: hidden;
-    color: color(var(--midgrey) l(-30%));
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 1.6rem;
     line-height: 1.6em;
@@ -292,7 +344,7 @@ body {
     font-style: normal;
     letter-spacing: 0;
     text-rendering: optimizeLegibility;
-    background: #fff;
+    background: var(--kim-body-background-color);
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -419,7 +471,7 @@ blockquote cite a {
 }
 
 a {
-    color: color(var(--blue) l(-5%));
+    color: var(--kim-a-color);
     text-decoration: none;
 }
 

@@ -32,7 +32,7 @@ production stylesheet in assets/built/screen.css
 @import "global.css";
 
 body {
-    background: #fff;
+    background: var(--kim-body-background-color);
 }
 
 .img {
@@ -114,7 +114,7 @@ body {
     margin-top: 64px;
     padding-bottom: 12px;
     color: #fff;
-    background: color(var(--darkgrey) l(-5%)) no-repeat center center;
+    background: color(var(--kim-post-full-text-color) l(-5%)) no-repeat center center;
     background-size: cover;
 }
 
@@ -155,8 +155,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 6vw 3vw;
-    min-height: 200px;
-    max-height: 340px;
+    height: 425px;
 }
 
 .site-title {
@@ -223,8 +222,8 @@ body {
 .site-archive-header .no-image {
     padding-top: 0;
     padding-bottom: 0;
-    color: var(--darkgrey);
-    background: #fff;
+    color: var(--kim-post-full-text-color);
+    background: var(--kim-tags-header-background-color);
     opacity: 1.0;
 }
 
@@ -285,6 +284,11 @@ body {
     z-index: 1000;
 }
 
+.site-nav-main-content,
+.site-nav-content {
+    background-color: var(--kim-nav-background-color);
+}
+
 .site-nav {
     position: relative;
     z-index: 100;
@@ -294,7 +298,6 @@ body {
     overflow: hidden;
     height: 64px;
     font-size: 1.3rem;
-    background-color: var(--kim-nav-background-color);
     padding: 0 5vw;
 }
 
@@ -316,7 +319,7 @@ body {
 
 .site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after {
     right: 0;
-    background: linear-gradient(to right, color(var(--darkgrey) l(-5%) a(0)) 0%,color(var(--darkgrey) l(-5%)) 100%);
+    background: linear-gradient(to right, color(var(--kim-post-full-text-color) l(-5%) a(0)) 0%,color(var(--kim-post-full-text-color) l(-5%)) 100%);
 }
 
 .site-nav-left {
@@ -355,7 +358,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: inline-block;
     margin-right: 32px;
     padding: 12px 0;
-    color: #fff;
+    color: var(--kim-nav-li-color);
     font-size: 1.7rem;
     line-height: 1.8rem;
     font-weight: bold;
@@ -557,9 +560,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .rss-button svg {
+    fill: var(--kim-nav-li-color);
     margin-bottom: 1px;
     height: 2.1rem;
-    fill: #fff;
 }
 
 /* Special behaviors for home navigation */
@@ -604,15 +607,34 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .posts {
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .post-feed {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -20px;
     padding: 50px 0 0;
-    background: #fff;
+    width: 100%;
+}
+
+@media(min-width: 768px) {
+    .post-feed {
+        max-width: 780px;
+    }
+}
+
+@media(min-width: 1000px) {
+    .post-feed {
+        width: 700px;
+    }
+}
+
+@media(min-width: 1200px) {
+    .post-feed {
+        width: 810px;
+    }
 }
 
 .post-card {
@@ -621,11 +643,16 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin: 0 0 40px;
     padding: 0 20px 40px;
     min-height: 220px;
-    border-bottom: 1px solid color(var(--lightgrey) l(+12%));
     background-size: cover;
+    width: 100%;
+}
+
+@media(min-width: 478px) {
+    .post-card {
+        width: 50%;
+    }
 }
 
 .post-card-image-link {
@@ -646,15 +673,11 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 .post-card-content-link {
     position: relative;
     display: block;
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
 }
 
 .post-card-content-link:hover {
     text-decoration: none;
-}
-
-.post-card-header {
-    margin: 15px 0 0;
 }
 
 .post-feed .no-image .post-card-content-link {
@@ -665,6 +688,11 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     margin-top: 0;
 }
 
+.post-card-primary-tag-container {
+    display: flex;
+    justify-content: center;
+}
+
 .post-card-primary-tag {
     margin: 0 0 0.2em;
     color: var(--blue);
@@ -672,12 +700,17 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     font-weight: 500;
     letter-spacing: 0.2px;
     text-transform: uppercase;
+    color: var(--kim-post-category-color);
+    border: 2px solid var(--kim-post-category-border);
+    padding: 0 8px;
 }
 
 .post-card-title {
-    margin: 0 0 0.4em;
+    margin: 25px 0 0.4em;
     line-height: 1.15em;
     transition: color 0.2s ease-in-out;
+    color: var(--kim-post-title-color);
+    text-transform: uppercase;
 }
 
 .no-image .post-card-title {
@@ -685,14 +718,15 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-content {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background-color: var(--kim-post-background-color);
+    padding: 40px 35px;
 }
 
 .post-card-excerpt {
     max-width: 56em;
-    color: var(--midgrey);
+    color: color(var(--kim-post-excerpt-color) l(+10%));
     font-family: Georgia, serif;
 }
 
@@ -782,7 +816,6 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: flex;
     flex-direction: column;
     margin: 2px 0 0 6px;
-    color: color(var(--midgrey) l(+10%));
     font-size: 1.2rem;
     line-height: 1.4em;
     font-weight: 400;
@@ -795,12 +828,13 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-byline-content a {
-    color: color(var(--darkgrey) l(+20%));
+    color: var(--kim-post-author-name-color);
     font-weight: 600;
 }
 
 .post-card-byline-date {
     font-size: 1.2rem;
+    color: var(--kim-post-author-date-color);
 }
 
 .post-card-byline-date .bull {
@@ -832,84 +866,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: inline-block;
 }
 
-/* Special Styling for home page grid (below):
-
-The first post in the list is styled to be bigger than the others and take over
-the full width of the grid to give it more emphasis. Wrapped in a media query to
-make sure this only happens on large viewports / desktop-ish devices.
-
- */
-
-@media (min-width: 795px) {
-    .post-card-large {
-        flex: 1 1 100%;
-        flex-direction: row;
-        padding-bottom: 40px;
-        min-height: 280px;
-        border-top: 0;
-    }
-
-    .post-card-large:hover {
-        border-bottom-color: color(var(--lightgrey) l(+10%));
-    }
-
-    .post-card-large:not(.no-image) .post-card-header {
-        margin-top: 0;
-    }
-
-    .post-card-large .post-card-image-link {
-        position: relative;
-        flex: 1 1 auto;
-        margin-bottom: 0;
-        min-height: 380px;
-    }
-
-    .post-card-large .post-card-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    .post-card-large .post-card-content {
-        flex: 0 1 361px;
-        justify-content: center;
-    }
-
-    .post-card-large .post-card-title {
-        margin-top: 0;
-        font-size: 3.2rem;
-    }
-
-    .post-card-large .post-card-content-link {
-        padding: 0 0 0 40px;
-    }
-
-    .post-card-large .post-card-meta {
-        padding: 0 0 0 40px;
-    }
-
-    .post-card-large .post-card-excerpt p {
-        margin-bottom: 1.5em;
-        font-size: 1.8rem;
-        line-height: 1.5em;
-    }
-}
-
-
-/* Adjust some margins for smaller screens */
-@media (max-width: 1170px) {
-    .post-card {
-        margin-bottom: 5vw;
-    }
-}
-
 @media (max-width: 650px) {
     .post-feed {
         padding-top: 5vw;
-    }
-
-    .post-card {
-        margin-bottom: 5vw;
     }
 }
 
@@ -923,6 +882,205 @@ make sure this only happens on large viewports / desktop-ish devices.
     }
 }
 
+/* 6.1 Right Feed 
+/* ---------------------------------------------------------- */
+
+.right-feed {
+    width: 320px;
+    padding: 40px 15px;
+    display: none;
+}
+
+@media(min-width: 1024px) {
+    .right-feed {
+        display: block;
+    }
+}
+
+.right-feed-container {
+    background-color: var(--kim-categories-background-color);
+    margin-bottom: 15px;
+}
+
+.right-feed-title {
+    text-align: center;
+    color: var(--kim-categories-title-color);
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.right-feed-title:before,
+.right-feed-title:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 30%;
+    top: 50%;
+    background-color: var(--kim-categories-title-detail-color);
+}
+
+.right-feed-title:before {
+    right: 0;
+}
+
+.right-feed-title:after {
+    left: 0;
+}
+
+.author-container {
+    position: relative;
+    padding-top: 205px;
+}
+
+.author-container-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+}
+
+.author-container-background img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.author-container-profile-image,
+.author-container-profile-image-link {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.author-container-profile-image-link a,
+.author-container-profile-image img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.author-container-profile-image-link a {
+    opacity: 0;
+    z-index: 10;
+}
+
+.author-container-profile-image img {
+    object-fit: cover;
+}
+
+.author-container-details {
+    padding: 15px;
+}
+
+.author-container-name {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: .5rem;
+    margin-bottom: 0;
+}
+
+.author-container-name a {
+    color: var(--kim-right-feed-author-name-color);
+    transition: color 200ms ease;
+}
+
+.author-container-name a:hover {
+    text-decoration: none;
+    color: var(--kim-right-feed-author-name-hover-color);
+}
+
+.author-container-location {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--kim-right-feed-author-location-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.author-container-location svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-right: 4px;
+    fill: var(--kim-right-feed-author-location-color);
+}
+
+.author-container-bio {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--kim-right-feed-author-bio-color);
+    text-align: center;
+}
+
+.author-container-social-media-links {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.author-container-social-facebook,
+.author-container-social-twitter {
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+    margin-right: .5rem;
+}
+
+.author-container-social-facebook a,
+.author-container-social-twitter a {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.author-container-social-facebook svg,
+.author-container-social-twitter svg {
+    height: 100%;
+    width: 100%;
+    color: var(--kim-post-author-social-media-icon-color);
+}
+
+.categories-list-container {
+    padding: 0;
+    list-style: none;
+}
+
+.categories-container {
+    padding: 30px;
+}
+
+.categories-list-item {
+    font-size: 1.5rem;
+    padding-left: 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--kim-categories-li-border-bottom-color);
+}
+
+.categories-list-item-link {
+    color: var(--kim-categories-link-color);
+    transition: color 200ms ease;
+}
+
+.categories-list-item-link:hover {
+    color: var(--kim-categories-link-hover-color);
+    text-decoration: none;
+}
 
 /* 7. Single Post
 /* ---------------------------------------------------------- */
@@ -931,7 +1089,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .page-template .site-main {
     margin-top: 64px;
     padding-bottom: 4vw;
-    background: #fff;
+    background: var(--kim-body-background-color);
 }
 
 .post-full-header {
@@ -980,12 +1138,12 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .post-full-title {
     margin: 0 0 0.2em;
-    color: color(var(--darkgrey) l(-5%));
+    color: var(--kim-post-full-title-color);
 }
 
 .post-full-custom-excerpt {
     margin: 20px 0 0;
-    color: var(--midgrey);
+    color: var(--kim-post-full-excerpt-color);
     font-family: Georgia, serif;
     font-size: 2.3rem;
     line-height: 1.4em;
@@ -1004,7 +1162,6 @@ make sure this only happens on large viewports / desktop-ish devices.
     align-items: center;
     overflow: hidden;
     margin: 25px 0 50px;
-    background: color(var(--lightgrey) l(+10%));
     border-radius: 3px;
 }
 
@@ -1022,7 +1179,6 @@ make sure this only happens on large viewports / desktop-ish devices.
     font-family: Georgia, serif;
     font-size: 2.0rem;
     line-height: 1.6em;
-    background: #fff;
 }
 
 @media (max-width: 1170px) {
@@ -1066,6 +1222,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-content blockquote,
 .post-full-comments,
 .footnotes {
+    color: var(--kim-post-full-text-color);
     margin: 0 0 1.5em 0;
     min-width: 100%;
 }
@@ -1082,6 +1239,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 }
 
 .post-full-content li {
+    color: var(--kim-post-full-text-color);
     word-break: break-word;
 }
 
@@ -1090,21 +1248,21 @@ make sure this only happens on large viewports / desktop-ish devices.
 }
 
 .post-full-content a {
-    color: var(--darkgrey);
+    color: var(--kim-post-full-a-color);
     word-break: break-word;
-    box-shadow: var(--darkgrey) 0 -1px 0 inset;
+    box-shadow: var(--kim-post-full-a-color) 0 -1px 0 inset;
     transition: all 0.2s ease-in-out;
 }
 
 .post-full-content a:hover {
-    color: var(--blue);
+    color: var(--kim-post-full-a-hover-color);
     text-decoration: none;
-    box-shadow: var(--blue) 0 -1px 0 inset;
+    box-shadow: var(--kim-post-full-a-hover-color) 0 -1px 0 inset;
 }
 
 .post-full-content strong,
 .post-full-content em {
-    color: color(var(--darkgrey) l(-5%));
+    color: color(var(--kim-post-full-strong-color) l(-5%));
 }
 
 .post-full-content small {
@@ -1169,7 +1327,7 @@ Usage (In Ghost editor):
 .post-full-content blockquote {
     margin: 0 0 1.5em;
     padding: 0 1.5em;
-    border-left: #3eb0ef 3px solid;
+    border-left: var(--kim-post-full-blockquote-left-color) 3px solid;
 }
 @media (max-width: 500px) {
     .post-full-content blockquote {
@@ -1194,7 +1352,7 @@ Usage (In Ghost editor):
     font-size: 0.8em;
     line-height: 1em;
     font-weight: 400!important;
-    background: var(--whitegrey);
+    background: var(--kim-post-full-code-background-color);
     border-radius: 3px;
 }
 
@@ -1207,7 +1365,7 @@ Usage (In Ghost editor):
     margin: 1.5em 0 3em;
     padding: 20px;
     max-width: 100%;
-    border: color(var(--darkgrey) l(-10%)) 1px solid;
+    border: color(var(--kim-post-full-text-color) l(-10%)) 1px solid;
     color: var(--whitegrey);
     font-size: 1.4rem;
     line-height: 1.5em;
@@ -1262,7 +1420,7 @@ Usage (In Ghost editor):
 .post-full-content h4,
 .post-full-content h5,
 .post-full-content h6 {
-    color: color(var(--darkgrey) l(-5%));
+    color: color(var(--kim-post-full-text-color) l(-5%));
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
@@ -1476,7 +1634,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content table th {
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 0.2px;
@@ -1500,7 +1658,7 @@ Usage (In Ghost editor):
     justify-content: space-between;
     margin: 35px 0 0;
     padding-top: 15px;
-    border-top: 1px solid color(var(--lightgrey) l(+10%));
+    border-top: 1px solid color(var(--kim-post-full-byline-color) l(+10%));
 }
 
 .post-full-byline-content {
@@ -1516,7 +1674,7 @@ Usage (In Ghost editor):
 
 .post-full-byline-meta {
     margin: 2px 0 0;
-    color: color(var(--midgrey) l(+10%));
+    color: color(var(--kim-post-full-byline-color) l(+10%));
     font-size: 1.2rem;
     line-height: 1.2em;
     letter-spacing: 0.2px;
@@ -1531,11 +1689,11 @@ Usage (In Ghost editor):
 }
 
 .post-full-byline-meta h4 a {
-    color: color(var(--darkgrey) l(+10%));
+    color: color(var(--kim-post-full-byline-color) l(+10%));
 }
 
 .post-full-byline-meta h4 a:hover {
-    color: var(--darkgrey);
+    color: var(--kim-post-full-byline-color);
 }
 
 .post-full-byline-meta .bull {
@@ -1698,7 +1856,7 @@ Usage (In Ghost editor):
 .subscribe-form-title {
     margin: 0 0 3px 0;
     padding: 0;
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
     font-size: 3.5rem;
     line-height: 1;
     font-weight: 600;
@@ -1861,7 +2019,8 @@ Usage (In Ghost editor):
 
 .read-next {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: color(var(--darkgrey) l(-5%));
+    background: color(var(--kim-post-full-read-next-background-color) l(-5%));
+    padding-bottom: 60px;
 }
 
 .read-next-feed {
@@ -1880,13 +2039,8 @@ Usage (In Ghost editor):
     display: none;
 }
 
-.read-next .post-card-primary-tag {
-    color: #fff;
-    opacity: 0.6;
-}
-
 .read-next .post-card-title {
-    color: #fff;
+    color: var(--kim-post-full-read-next-card-color);
     opacity: 0.8;
     transition: all 0.2s ease-in-out;
 }
@@ -1903,14 +2057,6 @@ Usage (In Ghost editor):
     border-color: #000;
 }
 
-.read-next .post-card-byline-content {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.read-next .post-card-byline-content a {
-    color: rgba(255, 255, 255, 0.8);
-}
-
 .read-next-card {
     position: relative;
     flex: 0 1 326px;
@@ -1919,7 +2065,7 @@ Usage (In Ghost editor):
     overflow: hidden;
     margin: 0 25px 50px;
     padding: 25px;
-    background: linear-gradient(color(var(--darkgrey) l(+2%)), color(var(--darkgrey) l(-5%)));
+    background: linear-gradient(color(var(--kim-post-full-read-next-background-color) l(+2%)), color(var(--darkgrey) l(-5%)));
     border-radius: 3px;
 }
 
@@ -1942,7 +2088,7 @@ Usage (In Ghost editor):
 }
 
 .read-next-card-header h3 a {
-    color: #fff;
+    color: var(--kim-post-full-read-next-card-color);
     font-weight: 500;
     text-decoration: none;
     opacity: 0.8;
@@ -1987,7 +2133,7 @@ Usage (In Ghost editor):
 
 .read-next-card-content li a {
     display: block;
-    color: #fff;
+    color: var(--kim-post-full-read-next-card-color);
     opacity: 0.8;
 }
 
@@ -2108,7 +2254,7 @@ Usage (In Ghost editor):
 
 .post-full-content figcaption {
     margin: 1.0em auto 0;
-    color: color(var(--midgrey) l(-10%));
+    color: #fbe2cb;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 75%;
     line-height: 1.5em;
@@ -2193,7 +2339,7 @@ Usage (In Ghost editor):
 .post-full-content .kg-bookmark-container {
     display: flex;
     min-height: 148px;
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     text-decoration: none;
     border-radius: 3px;
@@ -2201,7 +2347,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content .kg-bookmark-container:hover {
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
     text-decoration: none;
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.09);
 }
@@ -2380,6 +2526,19 @@ Usage (In Ghost editor):
     box-shadow: rgba(255,255,255,0.1) 0 0 0 6px;
 }
 
+.kimberlin-site-header-content {
+    height: 180px;
+    padding: 8vw 0 20px !important;
+}
+
+.kimberlin-site-header-content .site-title {
+    color: var(--kim-tags-header-title-color);
+}
+
+.kimberlin-site-header-content .site-description {
+    color: var(--kim-tags-header-title-color) !important;
+}
+
 .author-header-content .author-bio {
     z-index: 10;
     flex-shrink: 0;
@@ -2424,7 +2583,7 @@ Usage (In Ghost editor):
 }
 
 .no-image .author-social-link a {
-    color: var(--darkgrey);
+    color: var(--kim-post-full-text-color);
 }
 
 .author-social-link a:hover {
@@ -2521,13 +2680,13 @@ Usage (In Ghost editor):
 
 .error-message {
     padding-bottom: 10vw;
-    border-bottom: 1px solid color(var(--lightgrey) l(+10%));
+    border-bottom: 1px solid color(var(--kim-error-code-color) l(+10%));
     text-align: center;
 }
 
 .error-code {
     margin: 0;
-    color: var(--lightgrey);
+    color: var(--kim-error-code-color);
     font-size: 12vw;
     line-height: 1em;
     letter-spacing: -5px;
@@ -2536,7 +2695,7 @@ Usage (In Ghost editor):
 
 .error-description {
     margin: 0;
-    color: var(--midgrey);
+    color: var(--kim-error-description-color);
     font-size: 3rem;
     line-height: 1.3em;
     font-weight: 400;
@@ -2799,8 +2958,7 @@ Usage (In Ghost editor):
     position: relative;
     padding-top: 20px;
     padding-bottom: 60px;
-    color: #fff;
-    background: color(var(--darkgrey) l(-5%));
+    background: var(--kim-footer-background-color);
 }
 
 .site-footer-content {
@@ -2812,8 +2970,9 @@ Usage (In Ghost editor):
     font-size: 1.3rem;
 }
 
-.site-footer-content a {
-    color: rgba(255,255,255,0.7);
+.site-footer-content a,
+.copyright {
+    color: var(--kim-footer-color);
 }
 
 .site-footer-content a:hover {
@@ -2857,223 +3016,3 @@ Usage (In Ghost editor):
 }
 
 
-/* 12. Dark Mode
-/* ---------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-    body {
-        color: rgba(255, 255, 255, 0.75);
-        background: var(--darkmode);
-    }
-
-    img {
-        opacity: 0.9;
-    }
-
-    .site-header-background:before {
-        background: rgba(0,0,0,0.6);
-    }
-
-    .post-feed {
-        background: var(--darkmode);
-    }
-
-    .post-card,
-    .post-card:hover {
-        border-bottom-color: color(var(--darkmode) l(+8%));
-    }
-
-    .author-profile-image {
-        background: var(--darkmode);
-    }
-
-    .post-card-byline-content a {
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .post-card-byline-content a:hover {
-        color: #fff;
-    }
-
-    .post-card-image {
-        background: var(--darkmode);
-    }
-
-    .post-card-title {
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-    .post-card-excerpt {
-        color: color(var(--midgrey) l(+10%));
-    }
-
-    .author-avatar,
-    .static-avatar {
-        border-color: color(var(--darkgrey) l(+2%));
-    }
-
-    .site-main,
-    .post-template .site-main,
-    .page-template .site-main {
-        background: var(--darkmode);
-    }
-
-    .post-full-content {
-        background: var(--darkmode);
-    }
-
-    .post-full-title {
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .post-full-custom-excerpt {
-        color: color(var(--midgrey) l(+10%));
-    }
-
-    .post-full-image {
-        background-color: color(var(--darkmode) l(+8%));
-    }
-
-    .post-full-byline {
-        border-top-color: color(var(--darkmode) l(+15%));
-    }
-
-    .post-full-byline-meta h4 a {
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .post-full-byline-meta h4 a:hover {
-        color: #fff;
-    }
-
-    .author-list-item .author-card {
-        background: color(var(--darkmode) l(+4%));
-        box-shadow: 0 12px 26px rgba(0,0,0,0.4);
-    }
-
-    .author-list-item .author-card:before {
-        border-top-color: color(var(--darkmode) l(+4%));
-    }
-
-    .no-image .author-social-link a {
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .post-full-content h1,
-    .post-full-content h2,
-    .post-full-content h3,
-    .post-full-content h4,
-    .post-full-content h6 {
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .post-full-content a {
-        color: #fff;
-        box-shadow: inset 0 -1px 0 #fff;
-    }
-
-    .post-full-content strong {
-        color: #fff;
-    }
-
-    .post-full-content em {
-        color: #fff;
-    }
-
-    .post-full-content code {
-        color: #fff;
-        background: #000;
-    }
-
-    hr {
-        border-top-color: color(var(--darkmode) l(+8%));
-    }
-
-    .post-full-content figcaption {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .post-full-content table td:first-child {
-        background-image: linear-gradient(to right, var(--darkmode) 50%, color(var(--darkmode) a(0%)) 100%);
-    }
-
-    .post-full-content table td:last-child {
-        background-image: linear-gradient(to left, var(--darkmode) 50%, color(var(--darkmode) a(0%)) 100%);
-    }
-
-    .post-full-content table th {
-        color: rgba(255, 255, 255, 0.85);
-        background-color: color(var(--darkmode) l(+8%));
-    }
-
-    .post-full-content table th,
-    .post-full-content table td {
-        border: color(var(--darkmode) l(+8%)) 1px solid;
-    }
-
-    .post-full-content .kg-bookmark-container,
-    .post-full-content .kg-bookmark-container:hover {
-        color: rgba(255, 255, 255, 0.75);
-        box-shadow: 0 0 1px rgba(255,255,255,0.9);
-    }
-
-    .kg-bookmark-title {
-        color: #fff;
-    }
-
-    .kg-bookmark-description {
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .kg-bookmark-metadata {
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .site-archive-header .no-image {
-        color: rgba(255, 255, 255, 0.9);
-        background: var(--darkmode);
-    }
-
-    .site-archive-header .no-image .site-header-content {
-        border-bottom-color: color(var(--darkmode) l(+15%));
-    }
-
-    .site-header-content .author-profile-image {
-        box-shadow: 0 0 0 6px hsla(0,0%,100%,0.04);
-    }
-
-    .subscribe-form {
-        border: none;
-        background: linear-gradient(color(var(--darkmode) l(-6%)), color(var(--darkmode) l(-3%)));
-    }
-
-    .subscribe-form-title {
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .subscribe-form p {
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .subscribe-email {
-        border-color: color(var(--darkmode) l(+6%));
-        color: rgba(255, 255, 255, 0.9);
-        background: color(var(--darkmode) l(+3%));
-    }
-
-    .subscribe-email:focus {
-        border-color: color(var(--darkmode) l(+25%));
-    }
-
-    .subscribe-form button {
-        opacity: 0.9;
-    }
-
-    .subscribe-form .invalid .message-error,
-    .subscribe-form .error .message-error {
-        color: color(var(--red) l(+5%) s(-5%));
-    }
-
-    .subscribe-form .success .message-success {
-        color: color(var(--green) l(+5%) s(-5%));
-    }
-}
